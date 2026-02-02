@@ -1,6 +1,5 @@
 # Sql_Server_CheatSheets
 
-# SQL Server Backup & Recovery Scenarios
 
 این مجموعه در سال **۲۰۱۹** و پس از شرکت در کلاس‌های  
 **مهندس پرویز آقاصادقی**  
