@@ -104,6 +104,10 @@ SELECT COALESCE(NULL, NULL, 'FirstNonNull') AS CoalesceExample;
 
 -- Return NULL if values are equal
 SELECT NULLIF(5, 5) AS NullIfExample;
+
+-- Return Hash Value 
+SELECT CHECKSUM('Hello World') AS SimpleChecksum;
+
 GO
 
 -----------------------------------------------------------
