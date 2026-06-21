@@ -1,94 +1,164 @@
-# Sql_Server_CheatSheets
+# SQL Server CheatSheets
 
-
-این مجموعه در سال **۲۰۱۹** و پس از شرکت در کلاس‌های  
-**مهندس پرویز آقاصادقی**  
-جمع‌آوری و تکمیل شده است.
-
-محتوای این فولدر شامل مجموعه‌ای کامل از **اسکریپت‌های آموزشی و عملی SQL Server** با تمرکز بر:
-
-- Backup & Restore
-- Disaster Recovery
-- Crash Scenarios
-- System Functions & DBA Utilities
-- Reporting & Advanced Queries
-
-تمام فایل‌ها بر اساس سناریوهای واقعی طراحی شده‌اند و مناسب **DBAها، برنامه‌نویسان بک‌اند و علاقه‌مندان SQL Server** هستند.
+A practical collection of SQL Server backup, disaster recovery and advanced query scenarios, compiled in 2019 after attending Eng. Parviz Aghasadeghi’s SQL Server classes.
 
 ---
 
-# 📌 Backup & Disaster Recovery Files
+# 📚 Topics Covered
 
-## 1️⃣ demo_sql_backup_commands.sql
+## Database Design & Schema Management
 
-**موضوع:**
+* ERP Database Design
+* Schema Creation & Management
+* Table Structure Design
+* Database Object Organization
 
-Full Backup، Differential Backup و Transaction Log Backup
+## Data Definition Language (DDL)
 
-**کاربرد:**
+* ALTER TABLE Operations
+* Column Management
+* Table Structure Modification
+* DROP, DELETE and TRUNCATE Comparison
 
-* پیاده‌سازی استراتژی استاندارد بکاپ‌گیری
-* مناسب برای محیط‌های عملیاتی و سازمانی
+## Data Manipulation Language (DML)
 
-**پوشش می‌دهد:**
+* INSERT INTO
+* SELECT INTO
+* UPDATE Operations
+* Data Migration Examples
+
+## SQL Server Administration (DBA)
+
+* System Functions
+* System Variables
+* Error Handling Functions
+* Backup & Recovery Operations
+
+## Backup & Disaster Recovery
+
+* Full Backup
+* Differential Backup
+* Transaction Log Backup
+* Tail-Log Backup
+* Log File Recovery
+* Emergency Recovery Scenarios
+
+## Reporting & Analytics
+
+* Aggregate Reports
+* GROUP BY & GROUPING SETS
+* PIVOT Reports
+* Window Functions
+* Ranking Functions
+* Product & Sales Analysis
+
+## Advanced SQL Techniques
+
+* Subqueries
+* EXISTS
+* ANY
+* ALL
+* IN
+* CASE Expressions
+* Window Functions
+* Views
+
+---
+
+# 📂 Repository Structure
+
+## Database Design
+
+### demo_erp_database_design.sql
+
+Practical ERP database design example including relational database concepts and object organization.
+
+### demo_schema_management_examples.sql
+
+Examples of schema creation, management, and organization of database objects.
+
+---
+
+## DDL & Table Management
+
+### demo_table_alter_operations.sql
+
+Examples of modifying table structures using ALTER TABLE.
+
+### demo_update_and_alter_table.sql
+
+Table updates and structural modifications.
+
+### demo_drop_truncate_delete.sql
+
+Comparison and practical usage of:
+
+* DROP
+* TRUNCATE
+* DELETE
+
+Including behavioral differences and use cases.
+
+---
+
+## Data Manipulation
+
+### demo_insert_select_into.sql
+
+Examples of:
+
+* INSERT INTO
+* SELECT INTO
+* Data Copy Operations
+
+---
+
+## Backup & Recovery
+
+### demo_sql_backup_commands.sql
+
+Demonstrates:
+
+* Full Backup
+* Differential Backup
+* Transaction Log Backup
+
+Features:
 
 * INIT
 * CHECKSUM
 * COMPRESSION
 * STOP_ON_ERROR
 
----
+### demo_tail_log_backup.sql
 
-## 2️⃣ demo_tail_log_backup.sql
+Tail-Log Backup scenarios for disaster recovery and last transaction protection.
 
-**موضوع:**
-
-Tail-Log Backup
-
-**سناریوی استفاده:**
-
-* قبل از عملیات Restore
-* قبل از انجام تغییرات بحرانی
-* جلوگیری از از دست رفتن آخرین تراکنش‌ها
-
-**ویژگی‌ها:**
+Features:
 
 * NO_TRUNCATE
 * NORECOVERY
 * CONTINUE_AFTER_ERROR
 
----
+### demo_rebuild_log_file.sql
 
-## 3️⃣ demo_rebuild_log_file.sql
+Emergency recovery scenario when MDF files remain intact but the LDF file is missing or corrupted.
 
-**موضوع:**
-
-Rebuild Log File
-
-**سناریو:**
-
-* فایل‌های دیتا (MDF/NDF) سالم هستند.
-* فایل لاگ (LDF) حذف یا خراب شده است.
-
-**مراحل اجرا:**
+Includes:
 
 * EMERGENCY Mode
-* REBUILD LOG
-* MULTI_USER Mode
+* Log File Rebuild
+* MULTI_USER Recovery
 
-⚠️ این اسکریپت تنها در شرایط اضطراری و با آگاهی کامل استفاده شود.
+⚠️ Intended for emergency situations only.
 
 ---
 
-# 📌 System & DBA Utility Files
+## System Functions & Utilities
 
-## 4️⃣ demo_system_functions_and_variables.sql
+### demo_system_functions_and_variables.sql
 
-**موضوع:**
-
-System Functions & System Variables
-
-**شامل:**
+Examples of SQL Server system functions and variables including:
 
 * GETDATE()
 * SUSER_SNAME()
@@ -100,7 +170,7 @@ System Functions & System Variables
 * @@IDENTITY
 * SCOPE_IDENTITY()
 
-همچنین شامل توابع مدیریت خطا:
+Error Handling Functions:
 
 * ERROR_NUMBER()
 * ERROR_MESSAGE()
@@ -109,153 +179,451 @@ System Functions & System Variables
 
 ---
 
-## 5️⃣ demo_database_audit_log.sql
+## Reporting & Advanced Queries
 
-**موضوع:**
+### report_products_price_range.sql
 
-Audit Log با استفاده از Trigger
-
-**ویژگی‌ها:**
-
-* ثبت عملیات INSERT
-* ثبت عملیات UPDATE
-* ثبت عملیات DELETE
-
-**اطلاعات ذخیره‌شده:**
-
-* نوع عملیات
-* تاریخ و زمان
-* نام کاربری
-* نام برنامه
-* Host Name
-* IP Address
-
-همراه با پایگاه داده مجزا برای نگهداری لاگ‌های Audit.
-
----
-
-# 📊 Reporting & Advanced Query Files
-
-## 6️⃣ report_product_price_range.sql
-
-دسته‌بندی محصولات بر اساس بازه قیمت:
+Product classification by price range:
 
 * Cheap
 * Moderate
 * Expensive
 
+### report_employee_orders_freight_by_year.sql
+
+Employee sales and freight reporting with yearly analysis.
+
+### report_employee_order_count_pivot.sql
+
+Employee order count report using PIVOT techniques.
+
+### report_max_price_product_per_category.sql
+
+Finding the most expensive product within each category using joins and subqueries.
+
+### report_lowest_order_sales_comparison.sql
+
+Order comparison reports using ranking and analytical techniques.
+
+### report_products_summary_by_category_supplier.sql
+
+Product summaries grouped by category and supplier.
+
+### report_top5_active_products_sales.sql
+
+Top five active products based on sales performance.
+
 ---
 
-## 7️⃣ report_employee_sales_summary.sql
+## Advanced Query Examples
 
-گزارش فروش کارمندان با استفاده از:
+### demo_subquery_operators_all_any_exists_in.sql
 
-* GROUPING SETS
-* شمارش سفارش‌ها
-* مجموع Freight
+Examples of:
 
----
-
-## 8️⃣ report_employee_sales_pivot.sql
-
-گزارش Pivot فروش سالانه کارمندان به همراه محاسبه Total.
-
----
-
-## 9️⃣ report_any_all_exists_queries.sql
-
-نمونه‌های کاربردی:
-
+* EXISTS
 * ANY
 * ALL
-* EXISTS
 * IN
 
-و مقایسه عملکرد زیرکوئری‌ها.
+and subquery comparison techniques.
+
+### demo_aggregation_and_groupby_reports.sql
+
+Aggregation reports using:
+
+* GROUP BY
+* Aggregate Functions
+* Reporting Queries
+
+### demo_custom_orderby_case.sql
+
+Conditional sorting using CASE expressions.
+
+### demo_window_functions_reports.sql
+
+Window function examples including ranking and analytical calculations.
+
+### demo_window_View_reports.sql
+
+Advanced reporting examples using Views and Window Functions.
 
 ---
 
-## 🔟 report_top_sales_orders.sql
+# 🧠 Skills Demonstrated
 
-یافتن کم‌فروش‌ترین سفارش هر مشتری با استفاده از:
+This repository demonstrates practical experience in:
 
-* Ranking Functions
+* SQL Server Administration
+* Database Design
+* Backup & Recovery
+* Disaster Recovery
+* T-SQL Development
+* Reporting & Analytics
 * Window Functions
+* Aggregate Queries
+* Query Optimization Concepts
+* Relational Database Design
 
 ---
 
-## 1️⃣1️⃣ report_category_max_price.sql
+# 🎯 Target Audience
 
-نمایش گران‌ترین محصول هر دسته با استفاده از:
+* SQL Server DBAs
+* Backend Developers
+* Database Engineers
+* Database Administrators
+* Computer Science Students
+* SQL Learners
+
+---
+
+# ⚠️ Important Notes
+
+* Review scripts before executing them in production environments.
+* Update database names and file paths according to your environment.
+* Some scripts are designed for educational and demonstration purposes.
+* Test recovery and backup scripts in isolated environments before production use.
+
+---
+
+# 📸 Screenshots
+
+The repository contains sample screenshots demonstrating query results and report outputs.
+
+* p1.jpg
+* p2.jpg
+* p3.png
+
+---
+
+# 📢 License
+
+This repository is intended for educational and learning purposes.
+
+Free to use, study, and share.
+
+---
+
+## Author
+
+Mahdi Davoudi
+
+## Technologies
+
+* Microsoft SQL Server
+* T-SQL
+* SQL Server Management Studio (SSMS)
+
+## Repository Focus
+
+SQL Server Administration, Database Design, Reporting, Backup & Recovery, and Advanced Query Techniques.
+
+---
+
+---
+
+# 🇮🇷 راهنمای فارسی
+
+## معرفی پروژه
+
+
+این مجموعه در سال **۲۰۱۹** و پس از شرکت در کلاس‌های  
+**مهندس پرویز آقاصادقی**  
+جمع‌آوری و تکمیل شده است
+
+محتوای پروژه موضوعات مختلفی از جمله طراحی پایگاه داده، مدیریت ساختار جداول، گزارش‌گیری، توابع پیشرفته SQL Server، Backup و Recovery را پوشش می‌دهد و می‌تواند برای دانشجویان، برنامه‌نویسان و مدیران پایگاه داده مفید باشد.
+
+---
+
+# 📚 سرفصل‌های اصلی
+
+## طراحی پایگاه داده و مدیریت Schema
+
+* طراحی پایگاه داده ERP
+* ایجاد و مدیریت Schema
+* طراحی ساختار جداول
+* سازماندهی اشیاء پایگاه داده
+
+## دستورات DDL
+
+* مدیریت و ویرایش جداول
+* افزودن و حذف ستون‌ها
+* تغییر ساختار جداول
+* بررسی تفاوت DROP ، DELETE و TRUNCATE
+
+## دستورات DML
+
+* INSERT INTO
+* SELECT INTO
+* UPDATE
+* انتقال و کپی داده‌ها
+
+## مدیریت SQL Server (DBA)
+
+* توابع سیستمی
+* متغیرهای سیستمی
+* مدیریت خطاها
+* عملیات Backup و Recovery
+
+## پشتیبان‌گیری و بازیابی اطلاعات
+
+* Full Backup
+* Differential Backup
+* Transaction Log Backup
+* Tail-Log Backup
+* بازیابی فایل‌های Log
+* سناریوهای بازیابی در شرایط بحرانی
+
+## گزارش‌گیری و تحلیل داده
+
+* گزارش‌های تجمیعی
+* GROUP BY
+* GROUPING SETS
+* PIVOT
+* Window Functions
+* تحلیل فروش و محصولات
+
+## مباحث پیشرفته SQL
 
 * Subquery
-* JOIN
+* EXISTS
+* ANY
+* ALL
+* IN
+* CASE
+* Window Functions
+* View
 
 ---
 
-## 1️⃣2️⃣ report_custom_sorting.sql
+# 📂 ساختار فایل‌ها
 
-مرتب‌سازی شرطی داده‌ها با استفاده از CASE.
+## طراحی پایگاه داده
+
+### demo_erp_database_design.sql
+
+نمونه‌ای از طراحی پایگاه داده ERP شامل جداول، روابط و ساختار منطقی داده‌ها.
+
+### demo_schema_management_examples.sql
+
+نمونه‌های کاربردی برای ایجاد و مدیریت Schema در SQL Server.
 
 ---
 
-## 1️⃣3️⃣ report_grouping_sets.sql
+## مدیریت ساختار جداول
 
-گزارش‌های ترکیبی با استفاده از GROUPING SETS.
+### demo_table_alter_operations.sql
+
+نمونه‌های مختلف تغییر ساختار جداول با استفاده از ALTER TABLE.
+
+### demo_update_and_alter_table.sql
+
+مثال‌هایی برای بروزرسانی داده‌ها و تغییر ساختار جداول.
+
+### demo_drop_truncate_delete.sql
+
+بررسی تفاوت‌ها و کاربردهای:
+
+* DROP
+* TRUNCATE
+* DELETE
 
 ---
 
-## 1️⃣4️⃣ report_sales_and_customers.sql
+## مدیریت داده‌ها
+
+### demo_insert_select_into.sql
+
+نمونه‌هایی از:
+
+* INSERT INTO
+* SELECT INTO
+* انتقال داده بین جداول
+
+---
+
+## Backup و Recovery
+
+### demo_sql_backup_commands.sql
+
+نمونه‌های عملی:
+
+* Full Backup
+* Differential Backup
+* Transaction Log Backup
+
+به همراه گزینه‌های:
+
+* CHECKSUM
+* COMPRESSION
+* INIT
+* STOP_ON_ERROR
+
+### demo_tail_log_backup.sql
+
+سناریوهای Tail-Log Backup برای جلوگیری از از دست رفتن آخرین تراکنش‌ها.
+
+### demo_rebuild_log_file.sql
+
+نمونه بازیابی پایگاه داده در شرایطی که فایل Log آسیب دیده یا حذف شده است.
 
 شامل:
 
-* گزارش فروش محصولات
-* گزارش مشتریان بر اساس کشور و شهر
-* تحلیل سفارشات سالانه
+* EMERGENCY Mode
+* Rebuild Log
+* MULTI_USER Mode
 
 ---
 
-## 1️⃣5️⃣ report_top5_active_products_sales.sql
+## توابع و ابزارهای سیستمی
 
-نمایش ۵ محصول فعال پرفروش با حذف محصولات Discontinued.
+### demo_system_functions_and_variables.sql
 
----
-## 🧠 Covered Scenarios Summary
+نمونه‌های کاربردی از:
 
-- Full / Diff / Log Backup Strategy
-- Tail-Log Backup
-- Physical Crash
-- Log File Corruption
-- Emergency Mode Recovery
-- Audit Logging
-- Advanced Reporting
-- Window Functions & Pivot
+* GETDATE()
+* APP_NAME()
+* HOST_NAME()
+* SUSER_SNAME()
+* @@ERROR
+* @@SPID
+* @@TRANCOUNT
+* SCOPE_IDENTITY()
 
----
-
-## 🎯 Target Audience
-
-- SQL Server DBA
-- Backend Developers
-- Database Engineers
-- SQL Learners
+همراه با توابع مدیریت خطا.
 
 ---
 
-## ⚠️ Important Notes
+## گزارش‌گیری و تحلیل داده
 
-- قبل از اجرا در Production تست شود
-- مسیر فایل‌ها و نام دیتابیس را اصلاح کنید
-- برخی اسکریپت‌ها آموزشی هستند
+### report_products_price_range.sql
+
+دسته‌بندی محصولات بر اساس بازه قیمتی.
+
+### report_employee_orders_freight_by_year.sql
+
+گزارش سفارش‌ها و هزینه حمل بر اساس سال.
+
+### report_employee_order_count_pivot.sql
+
+گزارش Pivot تعداد سفارش‌های کارکنان.
+
+### report_max_price_product_per_category.sql
+
+نمایش گران‌ترین محصول هر دسته.
+
+### report_lowest_order_sales_comparison.sql
+
+مقایسه سفارش‌ها با استفاده از توابع تحلیلی.
+
+### report_products_summary_by_category_supplier.sql
+
+گزارش محصولات بر اساس دسته‌بندی و تأمین‌کننده.
+
+### report_top5_active_products_sales.sql
+
+نمایش ۵ محصول فعال با بیشترین میزان فروش.
 
 ---
 
-## 📢 License & Usage
+## مثال‌های پیشرفته SQL
 
-استفاده آموزشی و انتشار آزاد است  
-مناسب کانال‌های آموزشی (مانند تلگرام)
+### demo_subquery_operators_all_any_exists_in.sql
+
+نمونه‌های عملی:
+
+* EXISTS
+* ANY
+* ALL
+* IN
+
+### demo_aggregation_and_groupby_reports.sql
+
+گزارش‌های تجمیعی با استفاده از:
+
+* GROUP BY
+* Aggregate Functions
+
+### demo_custom_orderby_case.sql
+
+مرتب‌سازی شرطی داده‌ها با CASE.
+
+### demo_window_functions_reports.sql
+
+نمونه‌های مختلف Window Functions و Ranking.
+
+### demo_window_View_reports.sql
+
+گزارش‌گیری پیشرفته با View و Window Functions.
 
 ---
 
-**Author:** Mahdi Davoudi  
-**Topic:** SQL Server Backup, Recovery & Advanced Scenarios
+# 🧠 مهارت‌های پوشش داده شده
+
+این Repository مهارت‌های زیر را پوشش می‌دهد:
+
+* مدیریت SQL Server
+* طراحی پایگاه داده
+* Backup و Recovery
+* Disaster Recovery
+* توسعه T-SQL
+* گزارش‌گیری و تحلیل داده
+* Window Functions
+* توابع تجمیعی
+* طراحی پایگاه داده رابطه‌ای
+* مفاهیم بهینه‌سازی کوئری
+
+---
+
+# 🎯 مناسب برای
+
+* مدیران پایگاه داده (DBA)
+* برنامه‌نویسان Backend
+* مهندسان پایگاه داده
+* دانشجویان علوم کامپیوتر
+* علاقه‌مندان به SQL Server
+
+---
+
+# ⚠️ نکات مهم
+
+* قبل از اجرای اسکریپت‌ها در محیط Production حتماً تست انجام دهید.
+* مسیر فایل‌ها و نام پایگاه داده را متناسب با محیط خود تغییر دهید.
+* برخی اسکریپت‌ها صرفاً برای آموزش و یادگیری تهیه شده‌اند.
+* سناریوهای Backup و Recovery را ابتدا در محیط آزمایشی بررسی کنید.
+
+---
+
+# 📸 تصاویر پروژه
+
+فایل‌های زیر شامل نمونه خروجی‌ها و تصاویر پروژه هستند:
+
+* p1.jpg
+* p2.jpg
+* p3.png
+
+---
+
+# 📢 مجوز استفاده
+
+این پروژه با هدف آموزش و یادگیری منتشر شده است.
+
+استفاده، مطالعه، توسعه و اشتراک‌گذاری آن آزاد است.
+
+---
+
+## توسعه‌دهنده
+
+Mahdi Davoudi
+
+## فناوری‌های استفاده شده
+
+* Microsoft SQL Server
+* T-SQL
+* SQL Server Management Studio (SSMS)
+
+## تمرکز اصلی پروژه
+
+مدیریت SQL Server، طراحی پایگاه داده، گزارش‌گیری، Backup و Recovery و تکنیک‌های پیشرفته T-SQL
+
