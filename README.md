@@ -17,134 +17,209 @@
 
 ---
 
-## 📌 Backup & Disaster Recovery Files
+# 📌 Backup & Disaster Recovery Files
 
-### 1️⃣ demo_sql_backup_commands.sql
-**موضوع:**  
-Full Backup ، Differential Backup ، Transaction Log Backup
+## 1️⃣ demo_sql_backup_commands.sql
+
+**موضوع:**
+
+Full Backup، Differential Backup و Transaction Log Backup
 
 **کاربرد:**
-- بکاپ‌گیری استاندارد و امن
-- مناسب سناریوهای روزمره و سازمانی
+
+* پیاده‌سازی استراتژی استاندارد بکاپ‌گیری
+* مناسب برای محیط‌های عملیاتی و سازمانی
 
 **پوشش می‌دهد:**
-- `INIT`
-- `CHECKSUM`
-- `COMPRESSION`
-- `STOP_ON_ERROR`
+
+* INIT
+* CHECKSUM
+* COMPRESSION
+* STOP_ON_ERROR
 
 ---
 
-### 2️⃣ demo_tail_log_backup.sql
-**موضوع:** Tail-Log Backup
+## 2️⃣ demo_tail_log_backup.sql
+
+**موضوع:**
+
+Tail-Log Backup
 
 **سناریوی استفاده:**
-- قبل از Restore
-- قبل از عملیات بحرانی
-- جلوگیری از از دست رفتن آخرین تراکنش‌ها
+
+* قبل از عملیات Restore
+* قبل از انجام تغییرات بحرانی
+* جلوگیری از از دست رفتن آخرین تراکنش‌ها
 
 **ویژگی‌ها:**
-- `NO_TRUNCATE`
-- `NORECOVERY`
-- `CONTINUE_AFTER_ERROR`
+
+* NO_TRUNCATE
+* NORECOVERY
+* CONTINUE_AFTER_ERROR
 
 ---
 
-### 3️⃣ demo_rebuild_log_file.sql
-**موضوع:** Rebuild Log File
+## 3️⃣ demo_rebuild_log_file.sql
+
+**موضوع:**
+
+Rebuild Log File
 
 **سناریو:**
-- فایل‌های دیتا سالم هستند
-- فایل لاگ (LDF) خراب یا حذف شده
 
-**مراحل:**
-1. EMERGENCY Mode
-2. REBUILD LOG
-3. MULTI_USER
+* فایل‌های دیتا (MDF/NDF) سالم هستند.
+* فایل لاگ (LDF) حذف یا خراب شده است.
 
-⚠️ فقط در شرایط خاص استفاده شود.
+**مراحل اجرا:**
+
+* EMERGENCY Mode
+* REBUILD LOG
+* MULTI_USER Mode
+
+⚠️ این اسکریپت تنها در شرایط اضطراری و با آگاهی کامل استفاده شود.
 
 ---
 
-## 📌 System & DBA Utility Files
+# 📌 System & DBA Utility Files
 
-### 4️⃣ demo_system_functions_and_variables.sql
-**موضوع:**  
+## 4️⃣ demo_system_functions_and_variables.sql
+
+**موضوع:**
+
 System Functions & System Variables
 
 **شامل:**
-- `GETDATE()`
-- `SUSER_SNAME()`
-- `APP_NAME()`
-- `HOST_NAME()`
-- `@@TRANCOUNT`
-- `@@ERROR`
-- `@@SPID`
-- `@@IDENTITY`
-- `SCOPE_IDENTITY()`
-- Error Functions (`ERROR_NUMBER`, `ERROR_MESSAGE`, ...)
+
+* GETDATE()
+* SUSER_SNAME()
+* APP_NAME()
+* HOST_NAME()
+* @@TRANCOUNT
+* @@ERROR
+* @@SPID
+* @@IDENTITY
+* SCOPE_IDENTITY()
+
+همچنین شامل توابع مدیریت خطا:
+
+* ERROR_NUMBER()
+* ERROR_MESSAGE()
+* ERROR_LINE()
+* ERROR_PROCEDURE()
 
 ---
 
-### 5️⃣ demo_database_audit_log.sql
-**موضوع:** Audit Log با Trigger
+## 5️⃣ demo_database_audit_log.sql
+
+**موضوع:**
+
+Audit Log با استفاده از Trigger
 
 **ویژگی‌ها:**
-- ثبت `INSERT`, `UPDATE`, `DELETE`
-- ذخیره:
-  - نوع عملیات
-  - تاریخ
-  - لاگین
-  - نام برنامه
-  - Host
-  - IP Address
-- دیتابیس جداگانه برای Audit
+
+* ثبت عملیات INSERT
+* ثبت عملیات UPDATE
+* ثبت عملیات DELETE
+
+**اطلاعات ذخیره‌شده:**
+
+* نوع عملیات
+* تاریخ و زمان
+* نام کاربری
+* نام برنامه
+* Host Name
+* IP Address
+
+همراه با پایگاه داده مجزا برای نگهداری لاگ‌های Audit.
 
 ---
 
-## 📊 Reporting & Advanced Query Files
+# 📊 Reporting & Advanced Query Files
 
-### 6️⃣ report_product_price_range.sql
-- دسته‌بندی محصولات بر اساس قیمت (Cheap / Moderate / Expensive)
+## 6️⃣ report_product_price_range.sql
 
-### 7️⃣ report_employee_sales_summary.sql
-- گزارش فروش کارمندان
-- GROUPING SETS
-- شمارش سفارش و جمع Freight
+دسته‌بندی محصولات بر اساس بازه قیمت:
 
-### 8️⃣ report_employee_sales_pivot.sql
-- Pivot فروش سالانه کارمندان
-- محاسبه Total
-
-### 9️⃣ report_any_all_exists_queries.sql
-- استفاده از `ANY`, `ALL`, `EXISTS`, `IN`
-- مقایسه زیرکوئری‌ها
-
-### 🔟 report_top_sales_orders.sql
-- پیدا کردن کم‌فروش‌ترین سفارش هر مشتری
-- Ranking و Window Functions
-
-### 1️⃣1️⃣ report_category_max_price.sql
-- گران‌ترین محصول هر دسته
-- Subquery و Join
-
-### 1️⃣2️⃣ report_custom_sorting.sql
-- مرتب‌سازی شرطی با `CASE`
-
-### 1️⃣3️⃣ report_grouping_sets.sql
-- گزارش ترکیبی با `GROUPING SETS`
-
-### 1️⃣4️⃣ report_sales_and_customers.sql
-- گزارش فروش محصولات
-- گزارش مشتریان بر اساس کشور و شهر
-- تحلیل سفارشات سالانه
-
-### 1️⃣5️⃣ report_top5_active_products_sales.sql
-- 5 محصول پرفروش فعال
-- حذف محصولات Discontinued
+* Cheap
+* Moderate
+* Expensive
 
 ---
 
+## 7️⃣ report_employee_sales_summary.sql
+
+گزارش فروش کارمندان با استفاده از:
+
+* GROUPING SETS
+* شمارش سفارش‌ها
+* مجموع Freight
+
+---
+
+## 8️⃣ report_employee_sales_pivot.sql
+
+گزارش Pivot فروش سالانه کارمندان به همراه محاسبه Total.
+
+---
+
+## 9️⃣ report_any_all_exists_queries.sql
+
+نمونه‌های کاربردی:
+
+* ANY
+* ALL
+* EXISTS
+* IN
+
+و مقایسه عملکرد زیرکوئری‌ها.
+
+---
+
+## 🔟 report_top_sales_orders.sql
+
+یافتن کم‌فروش‌ترین سفارش هر مشتری با استفاده از:
+
+* Ranking Functions
+* Window Functions
+
+---
+
+## 1️⃣1️⃣ report_category_max_price.sql
+
+نمایش گران‌ترین محصول هر دسته با استفاده از:
+
+* Subquery
+* JOIN
+
+---
+
+## 1️⃣2️⃣ report_custom_sorting.sql
+
+مرتب‌سازی شرطی داده‌ها با استفاده از CASE.
+
+---
+
+## 1️⃣3️⃣ report_grouping_sets.sql
+
+گزارش‌های ترکیبی با استفاده از GROUPING SETS.
+
+---
+
+## 1️⃣4️⃣ report_sales_and_customers.sql
+
+شامل:
+
+* گزارش فروش محصولات
+* گزارش مشتریان بر اساس کشور و شهر
+* تحلیل سفارشات سالانه
+
+---
+
+## 1️⃣5️⃣ report_top5_active_products_sales.sql
+
+نمایش ۵ محصول فعال پرفروش با حذف محصولات Discontinued.
+
+---
 ## 🧠 Covered Scenarios Summary
 
 - Full / Diff / Log Backup Strategy
